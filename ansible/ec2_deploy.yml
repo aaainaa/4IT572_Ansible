@@ -1,4 +1,4 @@
-- name: deploy to EC2
+- name: Deploy to EC2
   hosts: localhost
   connection: local
 
@@ -26,7 +26,7 @@
       add_host:
         hostname: "{{ item.public_ip_address }}"
         groupname: launched
-      loop: "{{ec2_instance_result.instances }}"
+      loop: "{{ ec2_instance_result.instances }}"
 
     - name: Wait for SSH connection 
       delegate_to: "{{ item.public_dns_name }}"
@@ -44,16 +44,16 @@
     - name: Install Git and Docker
       yum: 
         name:
-          - Git
-          - Docker
+          - git
+          - docker
         state: latest
-        update_cashe: yes
+        update_cache: yes
     - service:
-        name: Docker
+        name: docker
         state: started
         enabled: yes 
     - name: Set proper rights to docker service
-      shell: usermod -a -G docker ec2_user 
+      shell: usermod -a -G docker ec2-user 
 
     - name: Fetch eshop from Git
       git: 
@@ -80,4 +80,3 @@
       wait_for: 
         port:
          80 
-  
