@@ -33,7 +33,7 @@
       wait_for_connection:
         delay: 30
         timeout: 300
-      loop: "{{ ec2_instance_result.instances}}"
+      loop: "{{ ec2_instance_result.instances }}"
 
 - name: Configure EC2 Instances
   hosts: launched
@@ -49,9 +49,9 @@
         state: latest
         update_cashe: yes
     - service:
-      name: Docker
-      state: started
-      enabled: yes 
+        name: Docker
+        state: started
+        enabled: yes 
     - name: Set proper rights to docker service
       shell: usermod -a -G docker ec2_user 
 
