@@ -63,11 +63,10 @@
     - name: Build eshop docker image
       docker_image:
         build:
-          path: ./app 
+          path: ./app
         name: eshop
         tag: latest
         sourse: build
-
     - name: Run eshop docker
       docker_container:
         name: eshop
