@@ -66,7 +66,7 @@
           path: ./app
         name: eshop
         tag: latest
-        sourse: build
+        source: build
     - name: Run eshop docker
       docker_container:
         name: eshop
